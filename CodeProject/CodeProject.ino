@@ -101,9 +101,9 @@ void DisplayLED_temperature() {
     delay(100);
     state_start = false;
   }
-  if (temperature >= temHIGH) SelectLEC(LED_RED);
-  else if (temperature > temLOW && temperature < temHIGH) SelectLEC(LED_GREEN);
-  else if (temperature <= temLOW) SelectLEC(LED_BLUE);
+  if (temperature >= temHIGH) SelectLED(LED_RED);
+  else if (temperature > temLOW && temperature < temHIGH) SelectLED(LED_GREEN);
+  else if (temperature <= temLOW) SelectLED(LED_BLUE);
   else {
     digitalWrite(LED_RED, HIGH);
     digitalWrite(LED_GREEN, HIGH);
@@ -118,7 +118,7 @@ void DisplayLCD(String Row1 , String Row2) {
   lcd.print(Row2);
 }
 
-void SelectLEC(int select) {
+void SelectLED(int select) {
   const int arrLED[3] = { LED_RED, LED_GREEN, LED_BLUE };
   for (int x; x < 3; x++) {
     if (arrLED[x] == select) digitalWrite(arrLED[x], HIGH);
