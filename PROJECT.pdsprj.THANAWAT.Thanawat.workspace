@@ -10,9 +10,9 @@
    </editor>
   </WINDOW>
   <WINDOW type="default" module="ARES">
-   <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="181" flipped="0" gridminor="400000" gridmode="32" snapidx="0" snap="10000" xcursor="0" orgmode="0" snaprange="70165">
+   <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="169" flipped="0" gridminor="400000" gridmode="32" snapidx="0" snap="10000" xcursor="0" orgmode="0" snaprange="75147">
     <world y1="-12700000" x1="-15240000" y2="12700000" x2="15240000"/>
-    <centre x="-1560000" y="-1740000"/>
+    <centre x="-1000000" y="-1890000"/>
     <origin x="0" y="0"/>
    </editor>
   </WINDOW>
@@ -20,14 +20,14 @@
    <camera>
     <position x="10185712" y="7909840" z="10910504"/>
     <focus x="-461039" y="-1536954" z="-307643"/>
-    <up x="-672181" y="-111609" z="731931"/>
+    <up x="-672178" y="-111608" z="731928"/>
    </camera>
   </WINDOW>
  </FRAME>
  <MODULE name="ARES">
-  <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="181" flipped="0" gridminor="400000" gridmode="32" snapidx="0" snap="10000" xcursor="0" orgmode="0" snaprange="70165">
+  <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="169" flipped="0" gridminor="400000" gridmode="32" snapidx="0" snap="10000" xcursor="0" orgmode="0" snaprange="75147">
    <world y1="-12700000" x1="-15240000" y2="12700000" x2="15240000"/>
-   <centre x="-1560000" y="-1740000"/>
+   <centre x="-1000000" y="-1890000"/>
    <origin x="0" y="0"/>
   </editor>
  </MODULE>
@@ -100,7 +100,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="168" flags="80000000" y="280" h="32" pid="14" iid="1">
+   <POPUP w="16" x="168" flags="00000000" y="280" h="32" pid="14" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
