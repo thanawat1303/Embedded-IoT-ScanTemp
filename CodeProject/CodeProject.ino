@@ -31,6 +31,7 @@ int stateProgram;
 
 void setup() {
   // lcdI2C.begin(16, 2);
+  Serial.begin(9600);
   lcdI2C.init();
   lcdI2C.setBacklight(true);
 
@@ -108,6 +109,8 @@ void DisplayLedTemperature() {
     delay(100);
     ProgramStart = false;
   }
+  Serial.println("Tem");
+  Serial.println(temperature);
 
   if (temperature >= temHIGH) SelectLED(LED_RED);
   else if (temperature > temLOW && temperature < temHIGH) SelectLED(LED_GREEN);
