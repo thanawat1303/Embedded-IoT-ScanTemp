@@ -7,7 +7,7 @@
 // LiquidCrystal lcd(rs , enable , d1 , d2 , d3 , d4);
 
 // LCD I2C
-DFRobot_RGBLCD1602 lcdI2C(16 , 2);
+DFRobot_RGBLCD1602 lcdI2C(16, 2);
 
 #define TemPin A0
 #define LED_RED 7
@@ -18,11 +18,15 @@ DFRobot_RGBLCD1602 lcdI2C(16 , 2);
 #define ButtonDOWN 11
 #define ChangeSetting 12
 
+const int PressChange = 1;
+const int PressPUSH = 10;
+const int PressSUBT = 01;
+
 const int DisplayAll = 0;
 const int DisplayTemHigh = 1;
-const int DisplayTemLow = 2; 
+const int DisplayTemLow = 2;
 
-const int arrLED[3] = { LED_RED , LED_GREEN , LED_BLUE };
+const int arrLED[3] = { LED_RED, LED_GREEN, LED_BLUE };
 bool ProgramStart;
 
 int temHIGH;
@@ -51,57 +55,94 @@ void setup() {
 
 void loop() {
   // ห้ามต่อ output ยาว ค่าจะเพี้ยน LM35
-  if (digitalRead(ChangeSetting) == 1) {
-    stateProgram = stateProgram + 1;
-    if (stateProgram > 2) stateProgram = 0;
+  switch (digitalRead(ChangeSetting)) {
+    case PressChange:
+      stateProgram = stateProgram + 1;
+      if (stateProgram > DisplayTemLow) stateProgram = 0;
 
-    lcdI2C.clear();
-    lcdI2C.print("Change menu");
-    while (digitalRead(ChangeSetting) == 1);
-    lcdI2C.clear();
-
-  } else if (digitalRead(ButtonUP) == 1 && (stateProgram == 1 || stateProgram == 2)) {
-    switch (stateProgram) {
-      case 1:
-          temHIGH = temHIGH + 1;
-        break;
-      case 2:
-          if(temLOW + 1 < temHIGH) temLOW = temLOW + 1;
-        break;
-    }
-    DisplayLCD("", "UP");
-    while (digitalRead(ButtonUP) == 1);
-    lcdI2C.clear();
-  } else if (digitalRead(ButtonDOWN) == 1 && (stateProgram == 1 || stateProgram == 2)) {
-    switch (stateProgram) {
-      case 1:
-          if(temHIGH - 1 > temLOW) temHIGH = temHIGH - 1;
-        break;
-      case 2:
-          temLOW = temLOW - 1;
-        break;
-    }
-    DisplayLCD("", "DOWN");
-    while (digitalRead(ButtonDOWN) == 1);
-    lcdI2C.clear();
+      lcdI2C.clear();
+      lcdI2C.print("Change menu");
+      while (digitalRead(ChangeSetting));
+      lcdI2C.clear();
+      break;
+    default:
+      if(stateProgram) {
+        const String HexPress = String(digitalRead(ButtonUP)) + String(digitalRead(ButtonDOWN));
+        switch (HexPress.toInt()) {
+          case PressPUSH:
+            switch (stateProgram) {
+              case DisplayTemHigh:
+                temHIGH = temHIGH + 1;
+                break;
+              case DisplayTemLow:
+                if (temLOW + 1 < temHIGH) temLOW = temLOW + 1;
+                break;
+            }
+            DisplayLCD("", "UP");
+            while (digitalRead(ButtonUP));
+            lcdI2C.clear();
+            break;
+          case PressSUBT:
+            switch (stateProgram) {
+              case DisplayTemHigh:
+                if (temHIGH - 1 > temLOW) temHIGH = temHIGH - 1;
+                break;
+              case DisplayTemLow:
+                temLOW = temLOW - 1;
+                break;
+            }
+            DisplayLCD("", "DOWN");
+            while (digitalRead(ButtonDOWN));
+            lcdI2C.clear();
+            break;
+          default: break;
+        }
+      }
+      break;
+      // if (digitalRead(ButtonUP) == PressPUSH && (stateProgram == 1 || stateProgram == 2)) {
+      //   switch (stateProgram) {
+      //     case 1:
+      //         temHIGH = temHIGH + 1;
+      //       break;
+      //     case 2:
+      //         if(temLOW + 1 < temHIGH) temLOW = temLOW + 1;
+      //       break;
+      //   }
+      //   DisplayLCD("", "UP");
+      //   while (digitalRead(ButtonUP) == 1);
+      //   lcdI2C.clear();
+      // } else if (digitalRead(ButtonDOWN) == PressSUBT && (stateProgram == 1 || stateProgram == 2)) {
+      //   switch (stateProgram) {
+      //     case 1:
+      //         if(temHIGH - 1 > temLOW) temHIGH = temHIGH - 1;
+      //       break;
+      //     case 2:
+      //         temLOW = temLOW - 1;
+      //       break;
+      //   }
+      //   DisplayLCD("", "DOWN");
+      //   while (digitalRead(ButtonDOWN) == 1);
+      //   lcdI2C.clear();
+      // }
   }
 
-  switch (stateProgram) {
-    case DisplayAll:
-        DisplayLCD("H : " + String(temHIGH) + " : " + "C : " + String(temLOW) , "Tem : " + String(analogRead(TemPin) * 0.48828125));
-      break;
-    case DisplayTemHigh:
-        DisplayLCD("HOT : " + String(temHIGH), "");
-      break;
-    case DisplayTemLow:
-        DisplayLCD("COOL : " + String(temLOW), "");
-      break;
-  }
-
+  DisplayLCDTemperature();
   DisplayLedTemperature();
 }
 
-
+void DisplayLCDTemperature() {
+  switch (stateProgram) {
+    case DisplayAll:
+      DisplayLCD("H : " + String(temHIGH) + " : " + "C : " + String(temLOW), "Tem : " + String(analogRead(TemPin) * 0.48828125));
+      break;
+    case DisplayTemHigh:
+      DisplayLCD("HOT : " + String(temHIGH), "");
+      break;
+    case DisplayTemLow:
+      DisplayLCD("COOL : " + String(temLOW), "");
+      break;
+  }
+}
 
 void DisplayLedTemperature() {
   float temperature = analogRead(TemPin) * 0.48828125;  // ((analog / 1024) * 5000) / 10
@@ -122,7 +163,7 @@ void DisplayLedTemperature() {
   }
 }
 
-void DisplayLCD(String Row1 , String Row2) {
+void DisplayLCD(String Row1, String Row2) {
   lcdI2C.setCursor(0, 0);
   lcdI2C.print(Row1);
   lcdI2C.setCursor(0, 1);
