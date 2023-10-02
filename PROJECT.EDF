@@ -6,9 +6,9 @@
  (resolution mm 100000)
  (unit mm)
  (structure
-  (boundary (rect pcb -202.85080 -85.75080 -18.94920 26.55080))
-  (boundary (path signal 0.10160 -202.80000 -85.70000 -19.00000 -85.70000 -19.00000 26.50000
-   -202.80000 26.50000 -202.80000 -85.70000))
+  (boundary (rect pcb -82.25080 -74.85080 42.85080 39.05080))
+  (boundary (path signal 0.10160 -82.20000 -71.00000 42.80000 -71.00000 42.80000 39.00000
+   -82.20000 39.00000 -82.20000 -71.00000))
   (flip_style mirror_first)
   (layer TOP (type signal) (direction horizontal))
   (layer I1 (type signal) (direction off))
@@ -36,6 +36,7 @@
    $VIA#0_SIGNAL
    (spare
     $VIA#0_POWER
+    PS8
    )
   )
   (rule
@@ -51,23 +52,28 @@
   )
  )
  (placement
-  (component SPDIL28_U1 (place U1 -89.40000 0.70000 front 0))
-  (component XTAL18_X1 (place X1 -84.90000 -4.80000 front -90))
-  (component CAPC0603X33_C1 (place C1 -72.30000 -6.40000 front 0))
-  (component CAPC0603X33_C2 (place C2 -72.30000 -9.20000 front 0))
-  (component RES180_R4 (place R4 -77.47000 -26.67000 front 270))
-  (component RES180_R5 (place R5 -85.09000 -26.67000 front 270))
-  (component RES180_R6 (place R6 -69.85000 -26.67000 front 270))
-  (component RES180_R1 (place R1 -62.23000 -26.67000 front 270))
-  (component RES180_R2 (place R2 -54.61000 -26.67000 front 270))
-  (component RES180_R3 (place R3 -46.99000 -26.67000 front 270))
-  (component "TO92-100_U3" (place U3 -90.17000 -50.80000 front 90))
-  (component LED_D1 (place D1 -90.17000 -38.10000 front 180))
-  (component LED_D2 (place D2 -99.06000 -39.37000 front 0))
-  (component LED_D3 (place D3 -45.72000 -78.74000 front 180))
+  (component SPDIL28_ATMEGA328P (place ATMEGA328P -15.40000 -12.60000 front 0))
+  (component XTAL18_CRYSTAL (place CRYSTAL -4.30000 -23.50000 front 0))
+  (component CAPC3215X168_C1 (place C1 -9.90000 -23.50000 front -180))
+  (component CAPC3215X168_C2 (place C2 -9.90000 -27.10000 front 180))
+  (component "TO92-100_LM35" (place LM35 -24.60000 26.70000 front 0))
+  (component RES40_RGREEN (place RGREEN 8.50000 -42.80000 front 0))
+  (component RES40_RRED (place RRED 8.60000 -34.70000 front 0))
+  (component RES40_RBLUE (place RBLUE 8.60000 -50.60000 front 0))
+  (component "LED_LED-RED" (place "LED-RED" 31.56000 -34.70000 front 0))
+  (component "LED_LED-GREEN" (place "LED-GREEN" 31.56000 -42.80000 front 0))
+  (component "LED_LED-BLUE" (place "LED-BLUE" 31.56000 -50.60000 front 0))
+  (component BUTTON_SWITCH_6X6_CHANGE (place CHANGE -12.50000 26.70000 front -180))
+  (component BUTTON_SWITCH_6X6_PUSH (place PUSH 27.60000 26.60000 front -180))
+  (component BUTTON_SWITCH_6X6_SUBT (place SUBT 10.10000 26.60000 front -180))
+  (component RES50_RCHANGE (place RCHANGE -6.00000 15.40000 front 0))
+  (component RES50_RPUSH (place RPUSH 34.10000 15.40000 front -90))
+  (component RES50_RSUBT (place RSUBT 16.60000 15.40000 front -90))
+  (component LCD_I2C_16X2_LCD (place LCD -65.80000 -58.50000 front 0))
+  (component "DC JACK_JACK" (place JACK 12.00000 -61.80000 front 0))
  )
  (library
-  (image SPDIL28_U1 (side front)
+  (image SPDIL28_ATMEGA328P (side front)
    (outline (rect TOP -0.66580 -0.63500 33.72580 8.25500))
    (pin PS0 (rotate 90) 0 0.00000 0.00000)
    (pin PS1 (rotate 90) 1 2.54000 0.00000)
@@ -98,71 +104,105 @@
    (pin PS1 (rotate 90) 26 2.54000 7.62000)
    (pin PS1 (rotate 90) 27 0.02000 7.62000)
   )
-  (image XTAL18_X1 (side front)
+  (image XTAL18_CRYSTAL (side front)
    (outline (rect TOP -2.59080 -2.59080 7.67080 2.59080))
    (pin PS2 (rotate 0) 0 0.00000 0.00000)
    (pin PS2 (rotate 0) 1 5.08000 0.00000)
   )
-  (image CAPC0603X33_C1 (side front)
-   (outline (rect TOP -0.42500 -0.37500 1.12500 0.37500))
-   (pin PS3 (rotate 90) 0 0.00000 0.00000)
-   (pin PS3 (rotate 90) 1 0.70000 0.00000)
+  (image CAPC3215X168_C1 (side front)
+   (outline (rect TOP -0.87500 -1.12500 3.87500 1.12500))
+   (pin PS3 (rotate 0) 0 0.00000 0.00000)
+   (pin PS3 (rotate 0) 1 3.00000 0.00000)
   )
-  (image CAPC0603X33_C2 (side front)
-   (outline (rect TOP -0.42500 -0.37500 1.12500 0.37500))
-   (pin PS3 (rotate 90) 0 0.00000 0.00000)
-   (pin PS3 (rotate 90) 1 0.70000 0.00000)
+  (image CAPC3215X168_C2 (side front)
+   (outline (rect TOP -0.87500 -1.12500 3.87500 1.12500))
+   (pin PS3 (rotate 0) 0 0.00000 0.00000)
+   (pin PS3 (rotate 0) 1 3.00000 0.00000)
   )
-  (image RES180_R4 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image RES180_R5 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image RES180_R6 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image RES180_R1 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image RES180_R2 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image RES180_R3 (side front)
-   (outline (rect TOP -1.27000 -2.59080 46.99000 2.59080))
-   (pin PS4 (rotate 0) 0 0.00000 0.00000)
-   (pin PS4 (rotate 0) 1 45.72000 0.00000)
-  )
-  (image "TO92-100_U3" (side front)
+  (image "TO92-100_LM35" (side front)
    (outline (rect TOP -4.11480 -1.44780 4.11480 4.11480))
    (pin PS2 (rotate 0) 0 -2.54000 0.00000)
    (pin PS2 (rotate 0) 1 0.00000 0.00000)
-   (pin PS2 (rotate 0) 2 2.54000 0.00000)
+   (pin PS4 (rotate 0) 2 2.54000 0.00000)
   )
-  (image LED_D1 (side front)
-   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+  (image RES40_RGREEN (side front)
+   (outline (rect TOP -0.88900 -0.88900 11.04900 0.88900))
    (pin PS5 (rotate 0) 0 0.00000 0.00000)
-   (pin PS5 (rotate 0) 1 2.54000 0.00000)
+   (pin PS5 (rotate 0) 1 10.16000 0.00000)
   )
-  (image LED_D2 (side front)
-   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+  (image RES40_RRED (side front)
+   (outline (rect TOP -0.88900 -0.88900 11.04900 0.88900))
    (pin PS5 (rotate 0) 0 0.00000 0.00000)
-   (pin PS5 (rotate 0) 1 2.54000 0.00000)
+   (pin PS5 (rotate 0) 1 10.16000 0.00000)
   )
-  (image LED_D3 (side front)
-   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+  (image RES40_RBLUE (side front)
+   (outline (rect TOP -0.88900 -0.88900 11.04900 0.88900))
    (pin PS5 (rotate 0) 0 0.00000 0.00000)
-   (pin PS5 (rotate 0) 1 2.54000 0.00000)
+   (pin PS5 (rotate 0) 1 10.16000 0.00000)
+  )
+  (image "LED_LED-RED" (side front)
+   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+   (pin PS6 (rotate 0) 0 0.00000 0.00000)
+   (pin PS6 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image "LED_LED-GREEN" (side front)
+   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+   (pin PS6 (rotate 0) 0 0.00000 0.00000)
+   (pin PS6 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image "LED_LED-BLUE" (side front)
+   (outline (rect TOP -1.95580 -2.59080 3.86080 3.22580))
+   (pin PS6 (rotate 0) 0 0.00000 0.00000)
+   (pin PS6 (rotate 0) 1 2.54000 0.00000)
+  )
+  (image BUTTON_SWITCH_6X6_CHANGE (side front)
+   (outline (rect TOP -8.15080 -6.25080 1.65080 1.65080))
+   (pin PS1 (rotate 0) 0 -6.50000 0.00000)
+   (pin PS1 (rotate 0) 1 0.00000 0.00000)
+   (pin PS1 (rotate 0) 2 -6.50000 -4.50000)
+   (pin PS1 (rotate 0) 3 0.00000 -4.50000)
+  )
+  (image BUTTON_SWITCH_6X6_PUSH (side front)
+   (outline (rect TOP -8.15080 -6.25080 1.65080 1.65080))
+   (pin PS1 (rotate 0) 0 -6.50000 0.00000)
+   (pin PS1 (rotate 0) 1 0.00000 0.00000)
+   (pin PS1 (rotate 0) 2 -6.50000 -4.50000)
+   (pin PS1 (rotate 0) 3 0.00000 -4.50000)
+  )
+  (image BUTTON_SWITCH_6X6_SUBT (side front)
+   (outline (rect TOP -8.15080 -6.25080 1.65080 1.65080))
+   (pin PS1 (rotate 0) 0 -6.50000 0.00000)
+   (pin PS1 (rotate 0) 1 0.00000 0.00000)
+   (pin PS1 (rotate 0) 2 -6.50000 -4.50000)
+   (pin PS1 (rotate 0) 3 0.00000 -4.50000)
+  )
+  (image RES50_RCHANGE (side front)
+   (outline (rect TOP -0.88900 -0.88900 13.58900 0.88900))
+   (pin PS5 (rotate 0) 0 0.00000 0.00000)
+   (pin PS5 (rotate 0) 1 12.70000 0.00000)
+  )
+  (image RES50_RPUSH (side front)
+   (outline (rect TOP -0.88900 -0.88900 13.58900 0.88900))
+   (pin PS5 (rotate 0) 0 0.00000 0.00000)
+   (pin PS5 (rotate 0) 1 12.70000 0.00000)
+  )
+  (image RES50_RSUBT (side front)
+   (outline (rect TOP -0.88900 -0.88900 13.58900 0.88900))
+   (pin PS5 (rotate 0) 0 0.00000 0.00000)
+   (pin PS5 (rotate 0) 1 12.70000 0.00000)
+  )
+  (image LCD_I2C_16X2_LCD (side front)
+   (outline (rect TOP -9.35080 -2.75080 30.75080 89.35080))
+   (pin PS7 (rotate 180) 0 0.00000 0.00000)
+   (pin PS7 (rotate 180) 1 2.50000 0.00000)
+   (pin PS7 (rotate 90) 2 5.00000 0.00000)
+   (pin PS7 (rotate 90) 3 7.50000 0.00000)
+  )
+  (image "DC JACK_JACK" (side front)
+   (outline (rect TOP -4.95080 -13.05080 5.05080 1.35080))
+   (pin PS9 (rotate -90) 0 0.00000 0.00000)
+   (pin PS9 (rotate -90) 1 0.00000 -5.50000)
+   (pin PS9 (rotate 0) 2 3.00000 -3.50000)
   )
   (padstack PS0 (absolute on)
    (shape (rect TOP -0.63500 -0.63500 0.63500 0.63500))
@@ -218,26 +258,44 @@
    (shape (circle I14 2.03200 0 0))
    (shape (circle BOT 2.03200 0 0))
   )
-  (padstack PS3 (absolute on) (shape (rect TOP -0.20320 -0.22860 0.20320 0.22860)))
+  (padstack PS3 (absolute on) (shape (rect TOP -0.57150 -0.82550 0.57150 0.82550)))
   (padstack PS4 (absolute on)
-   (shape (circle TOP 2.54000 0 0))
-   (shape (circle I1 2.54000 0 0))
-   (shape (circle I2 2.54000 0 0))
-   (shape (circle I3 2.54000 0 0))
-   (shape (circle I4 2.54000 0 0))
-   (shape (circle I5 2.54000 0 0))
-   (shape (circle I6 2.54000 0 0))
-   (shape (circle I7 2.54000 0 0))
-   (shape (circle I8 2.54000 0 0))
-   (shape (circle I9 2.54000 0 0))
-   (shape (circle I10 2.54000 0 0))
-   (shape (circle I11 2.54000 0 0))
-   (shape (circle I12 2.54000 0 0))
-   (shape (circle I13 2.54000 0 0))
-   (shape (circle I14 2.54000 0 0))
-   (shape (circle BOT 2.54000 0 0))
+   (shape (rect TOP -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I1 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I2 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I3 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I4 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I5 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I6 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I7 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I8 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I9 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I10 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I11 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I12 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I13 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect I14 -0.88900 -0.88900 0.88900 0.88900))
+   (shape (rect BOT -0.88900 -0.88900 0.88900 0.88900))
   )
   (padstack PS5 (absolute on)
+   (shape (circle TOP 1.77800 0 0))
+   (shape (circle I1 1.77800 0 0))
+   (shape (circle I2 1.77800 0 0))
+   (shape (circle I3 1.77800 0 0))
+   (shape (circle I4 1.77800 0 0))
+   (shape (circle I5 1.77800 0 0))
+   (shape (circle I6 1.77800 0 0))
+   (shape (circle I7 1.77800 0 0))
+   (shape (circle I8 1.77800 0 0))
+   (shape (circle I9 1.77800 0 0))
+   (shape (circle I10 1.77800 0 0))
+   (shape (circle I11 1.77800 0 0))
+   (shape (circle I12 1.77800 0 0))
+   (shape (circle I13 1.77800 0 0))
+   (shape (circle I14 1.77800 0 0))
+   (shape (circle BOT 1.77800 0 0))
+  )
+  (padstack PS6 (absolute on)
    (shape (rect TOP -1.01600 -1.01600 1.01600 1.01600))
    (shape (rect I1 -1.01600 -1.01600 1.01600 1.01600))
    (shape (rect I2 -1.01600 -1.01600 1.01600 1.01600))
@@ -254,6 +312,60 @@
    (shape (rect I13 -1.01600 -1.01600 1.01600 1.01600))
    (shape (rect I14 -1.01600 -1.01600 1.01600 1.01600))
    (shape (rect BOT -1.01600 -1.01600 1.01600 1.01600))
+  )
+  (padstack PS7 (absolute on)
+   (shape (circle TOP 1.52400 0 0))
+   (shape (circle I1 1.52400 0 0))
+   (shape (circle I2 1.52400 0 0))
+   (shape (circle I3 1.52400 0 0))
+   (shape (circle I4 1.52400 0 0))
+   (shape (circle I5 1.52400 0 0))
+   (shape (circle I6 1.52400 0 0))
+   (shape (circle I7 1.52400 0 0))
+   (shape (circle I8 1.52400 0 0))
+   (shape (circle I9 1.52400 0 0))
+   (shape (circle I10 1.52400 0 0))
+   (shape (circle I11 1.52400 0 0))
+   (shape (circle I12 1.52400 0 0))
+   (shape (circle I13 1.52400 0 0))
+   (shape (circle I14 1.52400 0 0))
+   (shape (circle BOT 1.52400 0 0))
+  )
+  (padstack PS8 (absolute on)
+   (shape (rect TOP -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I1 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I2 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I3 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I4 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I5 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I6 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I7 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I8 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I9 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I10 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I11 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I12 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I13 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect I14 -0.63500 -0.63500 0.63500 0.63500))
+   (shape (rect BOT -0.63500 -0.63500 0.63500 0.63500))
+  )
+  (padstack PS9 (absolute on)
+   (shape (rect TOP -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I1 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I2 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I3 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I4 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I5 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I6 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I7 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I8 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I9 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I10 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I11 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I12 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I13 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect I14 -0.76200 -1.27000 0.76200 1.27000))
+   (shape (rect BOT -0.76200 -1.27000 0.76200 1.27000))
   )
   (padstack $VIA#0_SIGNAL (absolute on)
    (shape (circle TOP 0.76200 0 0))
@@ -293,50 +405,41 @@
   )
  )
  (network
-  (net "#00000"
+  (net "#00012"
    (circuit
     (use_layer TOP BOT)
     (use_via
      $VIA#0_SIGNAL
     )
    )
-   (pins X1-0 C1-0)
+   (pins RBLUE-1 "LED-BLUE"-0)
   )
-  (net "#00001"
+  (net "#00013"
    (circuit
     (use_layer TOP BOT)
     (use_via
      $VIA#0_SIGNAL
     )
    )
-   (pins X1-1 C2-0)
+   (pins RGREEN-1 "LED-GREEN"-0)
   )
-  (net "#00016"
+  (net "#00014"
    (circuit
     (use_layer TOP BOT)
     (use_via
      $VIA#0_SIGNAL
     )
    )
-   (pins R3-1 D3-0)
+   (pins RRED-1 "LED-RED"-0)
   )
-  (net "#00017"
+  (net "#00056"
    (circuit
     (use_layer TOP BOT)
     (use_via
      $VIA#0_SIGNAL
     )
    )
-   (pins R1-1 D2-0)
-  )
-  (net "#00018"
-   (circuit
-    (use_layer TOP BOT)
-    (use_via
-     $VIA#0_SIGNAL
-    )
-   )
-   (pins R2-1 D1-0)
+   (pins ATMEGA328P-19 JACK-0)
   )
   (net "1LCD"
    (circuit
@@ -345,7 +448,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-2)
+   (pins ATMEGA328P-2)
   )
   (net "2LCD"
    (circuit
@@ -354,7 +457,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-3)
+   (pins ATMEGA328P-3)
   )
   (net "3LCD"
    (circuit
@@ -363,7 +466,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-4)
+   (pins ATMEGA328P-4)
   )
   (net "4LCD"
    (circuit
@@ -372,7 +475,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-5)
+   (pins ATMEGA328P-5)
   )
   (net "BC"
    (circuit
@@ -381,7 +484,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-17 R4-0)
+   (pins ATMEGA328P-17 CHANGE-0 CHANGE-1 RCHANGE-0)
   )
   (net "BP"
    (circuit
@@ -390,7 +493,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-15 R5-0)
+   (pins ATMEGA328P-15 PUSH-0 PUSH-1 RPUSH-0)
   )
   (net "BS"
    (circuit
@@ -399,7 +502,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-16 R6-0)
+   (pins ATMEGA328P-16 SUBT-0 SUBT-1 RSUBT-0)
   )
   (net "CRYS6"
    (circuit
@@ -408,7 +511,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-8)
+   (pins ATMEGA328P-8 CRYSTAL-0 C1-0)
   )
   (net "CRYS7"
    (circuit
@@ -417,7 +520,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-9)
+   (pins ATMEGA328P-9 CRYSTAL-1 C2-0)
   )
   (net "ENABLE"
    (circuit
@@ -426,7 +529,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-14)
+   (pins ATMEGA328P-14)
   )
   (net "GND"
    (circuit
@@ -435,7 +538,8 @@
      $VIA#0_POWER
     )
    )
-   (pins U1-7 U1-21 C1-1 C2-1 R4-1 R5-1 R6-1 U3-2 D1-1 D2-1 D3-1)
+    (pins ATMEGA328P-7 ATMEGA328P-21 C1-1 C2-1 LM35-2 "LED-RED"-1 "LED-GREEN"-1 "LED-BLUE"-1
+    RCHANGE-1 RPUSH-1 RSUBT-1 LCD-0 JACK-1)
   )
   (net "LB"
    (circuit
@@ -444,7 +548,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-10 R3-0)
+   (pins ATMEGA328P-10 RBLUE-0)
   )
   (net "LG"
    (circuit
@@ -453,7 +557,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-11 R1-0)
+   (pins ATMEGA328P-11 RGREEN-0)
   )
   (net "LM35"
    (circuit
@@ -462,7 +566,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-22 U3-1)
+   (pins ATMEGA328P-22 LM35-1)
   )
   (net "LR"
    (circuit
@@ -471,7 +575,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-12 R2-0)
+   (pins ATMEGA328P-12 RRED-0)
   )
   (net "RS"
    (circuit
@@ -480,7 +584,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-13)
+   (pins ATMEGA328P-13)
   )
   (net "SCL"
    (circuit
@@ -489,7 +593,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-27)
+   (pins ATMEGA328P-27 LCD-3)
   )
   (net "SDA"
    (circuit
@@ -498,7 +602,7 @@
      $VIA#0_SIGNAL
     )
    )
-   (pins U1-26)
+   (pins ATMEGA328P-26 LCD-2)
   )
   (net "VCC/VDD"
    (circuit
@@ -507,7 +611,7 @@
      $VIA#0_POWER
     )
    )
-   (pins U1-6 U1-19 U3-0)
+   (pins ATMEGA328P-6 LM35-0 CHANGE-2 CHANGE-3 PUSH-2 PUSH-3 SUBT-2 SUBT-3 LCD-1)
   )
   (class POWER
    "GND"
@@ -525,11 +629,10 @@
    )
   )
   (class SIGNAL
-   "#00000"
-   "#00001"
-   "#00016"
-   "#00017"
-   "#00018"
+   "#00012"
+   "#00013"
+   "#00014"
+   "#00056"
    "1LCD"
    "2LCD"
    "3LCD"
@@ -563,5 +666,7 @@
   )
  )
  (wiring
+  (via PS8 20.15000 -4.99000 (net {NC-1}) (type protect))
+  (via PS8 20.15000 -12.60000 (net {NC-2}) (type protect))
  )
 )

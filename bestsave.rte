@@ -75,44 +75,53 @@
    (shape (circ I14 76200 0 0))
    (shape (circ BOT 76200 0 0))
   )
+  (padstack PS8
+   (shape (rect TOP -63500 -63500 63500 63500))
+   (shape (rect I1 -63500 -63500 63500 63500))
+   (shape (rect I2 -63500 -63500 63500 63500))
+   (shape (rect I3 -63500 -63500 63500 63500))
+   (shape (rect I4 -63500 -63500 63500 63500))
+   (shape (rect I5 -63500 -63500 63500 63500))
+   (shape (rect I6 -63500 -63500 63500 63500))
+   (shape (rect I7 -63500 -63500 63500 63500))
+   (shape (rect I8 -63500 -63500 63500 63500))
+   (shape (rect I9 -63500 -63500 63500 63500))
+   (shape (rect I10 -63500 -63500 63500 63500))
+   (shape (rect I11 -63500 -63500 63500 63500))
+   (shape (rect I12 -63500 -63500 63500 63500))
+   (shape (rect I13 -63500 -63500 63500 63500))
+   (shape (rect I14 -63500 -63500 63500 63500))
+   (shape (rect BOT -63500 -63500 63500 63500))
+  )
   )
   (network_out
-   (Net #00000 
+   (Net #00012 
    (rule
    )
-   (wire (path TOP 25400  -8490000 -480000 -8191500 -480000 -8191500 -640000
-     -7230000 -640000)
-    (connect (terminal pin X1-0) (terminal smd C1-0))
+   (wire (path TOP 25400  1876000 -5060000 3156000 -5060000)
+    (connect (terminal pin RBLUE-1) (terminal pin LED-BLUE-0))
    )
    )
-   (Net #00001 
+   (Net #00013 
    (rule
    )
-   (wire (path TOP 25400  -8490000 -988000 -7230000 -988000 -7230000 -920000)
-    (connect (terminal pin X1-1) (terminal smd C2-0))
+   (wire (path TOP 25400  1866000 -4280000 3156000 -4280000)
+    (connect (terminal pin RGREEN-1) (terminal pin LED-GREEN-0))
    )
    )
-   (Net #00016 
+   (Net #00014 
    (rule
    )
-   (wire (path BOT 25400  -4699000 -7239000 -4699000 -7493000 -4572000 -7493000
-     -4572000 -7874000)
-    (connect (terminal pin R3-1) (terminal pin D3-0))
+   (wire (path TOP 25400  1876000 -3470000 3156000 -3470000)
+    (connect (terminal pin RRED-1) (terminal pin LED-RED-0))
    )
    )
-   (Net #00017 
+   (Net #00056 
    (rule
    )
-   (wire (path TOP 25400  -6223000 -7239000 -6223000 -6108384 -9906000 -6108384
-     -9906000 -3937000)
-    (connect (terminal pin R1-1) (terminal pin D2-0))
-   )
-   )
-   (Net #00018 
-   (rule
-   )
-   (wire (path BOT 25400  -5461000 -7239000 -5461000 -3810000 -9017000 -3810000)
-    (connect (terminal pin R2-1) (terminal pin D1-0))
+   (wire (path BOT 25400  1200000 -6180000 635000 -6180000 635000 -952500
+     492000 -952500 492000 -498000)
+    (connect (terminal pin JACK-0) (terminal pin ATMEGA328P-19))
    )
    )
    (Net 1LCD 
@@ -134,34 +143,67 @@
    (Net BC 
    (rule
    )
-   (wire (path BOT 25400  -7747000 -2667000 -7747000 -572222 -6540500 -572222
-     -6540500 571500 -6400000 571500 -6400000 832000)
-    (connect (terminal pin R4-0) (terminal pin U1-17))
+   (wire (path BOT 25400  -600000 1540000 -600000 466548 1000000 466548
+     1000000 -498000)
+    (connect (terminal pin RCHANGE-0) (terminal pin ATMEGA328P-17))
+   )
+   (wire (path BOT 25400  -600000 2670000 -600000 1540000)
+    (connect (terminal pin CHANGE-0) (terminal pin RCHANGE-0))
+   )
+   (wire (path TOP 25400  -1250000 2670000 -600000 2670000)
+    (connect (terminal pin CHANGE-1) (terminal pin CHANGE-0))
    )
    )
    (Net BP 
    (rule
    )
-   (wire (path BOT 25400  -8509000 -2667000 -8509000 -2349500 -8001000 -2349500
-     -8001000 -508000 -6794500 -508000 -6794500 952500 -5892000 952500
-     -5892000 832000)
-    (connect (terminal pin R5-0) (terminal pin U1-15))
+   (wire (path BOT 25400  1508000 -498000 1651000 -498000 1651000 -127000
+     1968500 -127000 1968500 1540000 3410000 1540000)
+    (connect (terminal pin ATMEGA328P-15) (terminal pin RPUSH-0))
+   )
+   (wire (path BOT 25400  3410000 2660000 3410000 1540000)
+    (connect (terminal pin PUSH-0) (terminal pin RPUSH-0))
+   )
+   (wire (path TOP 25400  2760000 2660000 3410000 2660000)
+    (connect (terminal pin PUSH-1) (terminal pin PUSH-0))
    )
    )
    (Net BS 
    (rule
    )
-   (wire (path BOT 25400  -6985000 -2667000 -6985000 -925434 -6286500 -925434
-     -6286500 571500 -6146000 571500 -6146000 832000)
-    (connect (terminal pin R6-0) (terminal pin U1-16))
+   (wire (path BOT 25400  1660000 1540000 1660000 1148768 1905000 1148768
+     1905000 0 1254000 0 1254000 -498000)
+    (connect (terminal pin RSUBT-0) (terminal pin ATMEGA328P-16))
+   )
+   (wire (path BOT 25400  1660000 2660000 1660000 1540000)
+    (connect (terminal pin SUBT-0) (terminal pin RSUBT-0))
+   )
+   (wire (path TOP 25400  1010000 2660000 1660000 2660000)
+    (connect (terminal pin SUBT-1) (terminal pin SUBT-0))
    )
    )
    (Net CRYS6 
    (rule
    )
+   (wire (path BOT 25400  492000 -1260000 492000 -1897606 -430000 -1897606
+     -430000 -2350000)
+    (connect (terminal pin ATMEGA328P-8) (terminal pin CRYSTAL-0))
+   )
+   (wire (path TOP 25400  -430000 -2350000 -990000 -2350000)
+    (connect (terminal pin CRYSTAL-0) (terminal smd C1-0))
+   )
    )
    (Net CRYS7 
    (rule
+   )
+   (wire (path BOT 25400  78000 -2350000 -63500 -2350000 -63500 -2603500
+     -635000 -2603500 -635000 -1640360 381000 -1640360 381000 -381000
+     635000 -381000 635000 -787093 746000 -787093 746000 -1260000)
+    (connect (terminal pin CRYSTAL-1) (terminal pin ATMEGA328P-9))
+   )
+   (wire (path TOP 25400  78000 -2350000 -127000 -2350000 -127000 -2710000
+     -990000 -2710000)
+    (connect (terminal pin CRYSTAL-1) (terminal smd C2-0))
    )
    )
    (Net ENABLE 
@@ -171,76 +213,78 @@
    (Net GND 
    (rule
    )
-   (wire (path TOP 25400  -6985000 -7239000 -6667500 -7239000 -6667500 -7874000
-     -4826000 -7874000)
-    (connect (terminal pin R6-1) (terminal pin D3-1))
+   (wire (path TOP 25400  -6580000 -5850000 -6580000 -6096000 -6794500 -6096000
+     -6794500 -6730000 1200000 -6730000)
+    (connect (terminal pin LCD-0) (terminal pin JACK-1))
    )
-   (wire (path BOT 25400  -9017000 -4826000 -8509000 -4826000 -8509000 -7239000)
-    (connect (terminal pin U3-2) (terminal pin R5-1))
+   (wire (path TOP 25400  3410000 -5060000 3410000 -6730000 1200000 -6730000)
+    (connect (terminal pin LED-BLUE-1) (terminal pin JACK-1))
    )
-   (wire (path TOP 25400  -8318500 -1143000 -7160000 -1143000 -7160000 -920000)
-    (connect (terminal via) (terminal smd C2-1))
+   (wire (path TOP 25400  -2206000 2670000 -2206000 2540000 670000 2540000
+     670000 1540000)
+    (connect (terminal pin LM35-2) (terminal pin RCHANGE-1))
    )
-   (wire (path BOT 25400  -9271000 -3810000 -9271000 -1143000 -8318500 -1143000)
-    (connect (terminal pin D1-1) (terminal via))
+   (wire (path TOP 25400  238000 -1260000 127000 -1260000 127000 -1587500
+     -1290000 -1587500 -1290000 -2350000)
+    (connect (terminal pin ATMEGA328P-7) (terminal smd C1-1))
    )
-   (wire (path BOT 25400  -9017000 -4826000 -9017000 -4508500 -9271000 -4508500
-     -9271000 -3810000)
-    (connect (terminal pin U3-2) (terminal pin D1-1))
+   (wire (path TOP 25400  -16000 -498000 -16000 -254000 127000 -254000
+     127000 270000 1660000 270000)
+    (connect (terminal pin ATMEGA328P-21) (terminal pin RSUBT-1))
    )
-   (wire (path BOT 25400  -7162000 70000 -7048500 70000 -7048500 -127000
-     -7556500 -127000 -7556500 571500 -7416000 571500 -7416000 832000)
-    (connect (terminal pin U1-7) (terminal pin U1-21))
+   (wire (path BOT 25400  1660000 270000 1660000 862275 670000 862275
+     670000 1540000)
+    (connect (terminal pin RSUBT-1) (terminal pin RCHANGE-1))
    )
-   (wire (path TOP 25400  -9652000 -3937000 -9461500 -3937000 -9461500 -3810000
-     -9271000 -3810000)
-    (connect (terminal pin D2-1) (terminal pin D1-1))
+   (wire (path BOT 25400  238000 -1260000 238000 -1016000 127000 -1016000
+     127000 -762000 -16000 -762000 -16000 -498000)
+    (connect (terminal pin ATMEGA328P-7) (terminal pin ATMEGA328P-21))
    )
-   (wire (path TOP 25400  -7162000 70000 -7162000 -190500 -7160000 -190500
-     -7160000 -640000)
-    (connect (terminal pin U1-7) (terminal smd C1-1))
+   (wire (path BOT 25400  3410000 270000 3410000 -3470000)
+    (connect (terminal pin RPUSH-1) (terminal pin LED-RED-1))
    )
-   (wire (path TOP 25400  -8509000 -7239000 -7747000 -7239000)
-    (connect (terminal pin R5-1) (terminal pin R4-1))
+   (wire (path TOP 25400  1660000 270000 3410000 270000)
+    (connect (terminal pin RSUBT-1) (terminal pin RPUSH-1))
    )
-   (wire (path TOP 25400  -7747000 -7239000 -6985000 -7239000)
-    (connect (terminal pin R4-1) (terminal pin R6-1))
+   (wire (path BOT 25400  3410000 -3470000 3410000 -4280000)
+    (connect (terminal pin LED-RED-1) (terminal pin LED-GREEN-1))
    )
-   (wire (path TOP 25400  -7160000 -640000 -7160000 -920000)
-    (connect (terminal smd C1-1) (terminal smd C2-1))
+   (wire (path BOT 25400  3410000 -4280000 3410000 -5060000)
+    (connect (terminal pin LED-GREEN-1) (terminal pin LED-BLUE-1))
    )
-   (via $VIA#0_POWER -8318500 -1143000)
+   (wire (path TOP 25400  -1290000 -2710000 -1290000 -2350000)
+    (connect (terminal smd C2-1) (terminal smd C1-1))
+   )
    )
    (Net LB 
    (rule
    )
-   (wire (path BOT 25400  -4699000 -2667000 -5016500 -2667000 -5016500 -2921000
-     -7239000 -2921000 -7239000 -825500 -6400000 -825500 -6400000 70000)
-    (connect (terminal pin R3-0) (terminal pin U1-10))
+   (wire (path BOT 25400  860000 -5060000 860000 -4762500 698500 -4762500
+     698500 -3683000 1000000 -3683000 1000000 -1260000)
+    (connect (terminal pin RBLUE-0) (terminal pin ATMEGA328P-10))
    )
    )
    (Net LG 
    (rule
    )
-   (wire (path BOT 25400  -6223000 -2667000 -6223000 -1333500 -6146000 -1333500
-     -6146000 70000)
-    (connect (terminal pin R1-0) (terminal pin U1-11))
+   (wire (path BOT 25400  850000 -4280000 1254000 -4280000 1254000 -1260000)
+    (connect (terminal pin RGREEN-0) (terminal pin ATMEGA328P-11))
    )
    )
    (Net LM35 
    (rule
    )
-   (wire (path BOT 25400  -9017000 -5080000 -9461500 -5080000 -9461500 531276
-     -7670000 531276 -7670000 832000)
-    (connect (terminal pin U3-1) (terminal pin U1-22))
+   (wire (path BOT 25400  -2460000 2670000 -2460000 -381000 -270000 -381000
+     -270000 -498000)
+    (connect (terminal pin LM35-1) (terminal pin ATMEGA328P-22))
    )
    )
    (Net LR 
    (rule
    )
-   (wire (path BOT 25400  -5461000 -2667000 -5461000 -2349500 -5892000 -2349500
-     -5892000 70000)
-    (connect (terminal pin R2-0) (terminal pin U1-12))
+   (wire (path BOT 25400  860000 -3470000 860000 -1079500 1508000 -1079500
+     1508000 -1260000)
+    (connect (terminal pin RRED-0) (terminal pin ATMEGA328P-12))
    )
    )
    (Net RS 
@@ -250,25 +294,57 @@
    (Net SCL 
    (rule
    )
+   (wire (path BOT 25400  -1538000 -498000 -5830000 -498000 -5830000 -5850000)
+    (connect (terminal pin ATMEGA328P-27) (terminal pin LCD-3))
+   )
    )
    (Net SDA 
    (rule
+   )
+   (wire (path BOT 25400  -1286000 -498000 -1286000 -762000 -1397000 -762000
+     -1397000 -6032500 -6080000 -6032500 -6080000 -5850000)
+    (connect (terminal pin ATMEGA328P-26) (terminal pin LCD-2))
    )
    )
    (Net VCC/VDD 
    (rule
    )
-   (wire (path BOT 25400  -9017000 -5334000 -9512300 -5334000 -9512300 -195302
-     -9588500 -195302 -9588500 952500 -7302500 952500)
-    (connect (terminal pin U3-0) (terminal wire))
+   (wire (path TOP 25400  -16000 -1260000 -127000 -1260000 -127000 -1524000
+     -6330000 -1524000 -6330000 -5850000)
+    (connect (terminal pin ATMEGA328P-6) (terminal pin LCD-1))
    )
-   (wire (path BOT 25400  -7416000 70000 -7416000 317500 -7302500 317500
-     -7302500 952500)
-    (connect (terminal pin U1-6) (terminal wire))
+   (wire (path BOT 25400  -16000 -1260000 -16000 -1016000 -127000 -1016000
+     -127000 -190500 -927967 -190500 -927967 2857500 -1250000 2857500
+     -1250000 3120000)
+    (connect (terminal pin ATMEGA328P-6) (terminal pin CHANGE-3))
    )
-   (wire (path BOT 25400  -7302500 952500 -6908000 952500 -6908000 832000)
-    (connect (terminal wire) (terminal pin U1-19))
+   (wire (path TOP 25400  -2714000 2670000 -2714000 3120000 -1250000 3120000)
+    (connect (terminal pin LM35-0) (terminal pin CHANGE-3))
    )
+   (wire (path TOP 25400  1010000 3110000 762000 3110000 762000 3120000
+     -600000 3120000)
+    (connect (terminal pin SUBT-3) (terminal pin CHANGE-2))
+   )
+   (wire (path TOP 25400  2760000 3110000 1660000 3110000)
+    (connect (terminal pin PUSH-3) (terminal pin SUBT-2))
+   )
+   (wire (path TOP 25400  1660000 3110000 1010000 3110000)
+    (connect (terminal pin SUBT-2) (terminal pin SUBT-3))
+   )
+   (wire (path TOP 25400  3410000 3110000 2760000 3110000)
+    (connect (terminal pin PUSH-2) (terminal pin PUSH-3))
+   )
+   (wire (path TOP 25400  -1250000 3120000 -600000 3120000)
+    (connect (terminal pin CHANGE-3) (terminal pin CHANGE-2))
+   )
+   )
+   (Net {NC-1} 
+   (via PS8 2015000 -499000 (net {NC-1} )
+    (type protect))
+   )
+   (Net {NC-2} 
+   (via PS8 2015000 -1260000 (net {NC-2} )
+    (type protect))
    )
   )
  )
