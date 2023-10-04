@@ -11,5 +11,5 @@ void setup()
   lcd.print("myarduino.net"); //พิมพ์ข้อความ "myarduino.net"
 }
 void loop() {
-
+lcd.print(isi);
 }

@@ -1,13 +1,17 @@
 #include <Wire.h>
 // #include <LiquidCrystal.h>
-#include <DFRobot_RGBLCD1602.h>
 
 // LCD normal
 // const int rs = 8 , enable = 9 , d1 = 1 , d2 = 2 , d3 = 3 , d4 = 4;
 // LiquidCrystal lcd(rs , enable , d1 , d2 , d3 , d4);
 
-// LCD I2C
-DFRobot_RGBLCD1602 lcdI2C(16, 2);
+// LCD I2C on Proteus
+// #include <DFRobot_RGBLCD1602.h>
+// DFRobot_RGBLCD1602 lcdI2C(16, 2);
+
+// LCD I2C on Board
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcdI2C(0x27, 16, 2);
 
 #define TemPin A0
 #define LED_RED 7
@@ -33,9 +37,12 @@ int temHIGH;
 int temLOW;
 int stateProgram;
 
+float Tempalature = 0;
+float currentTime = millis();
+const int Interval = 1000;
+
 void setup() {
   // lcdI2C.begin(16, 2);
-  Serial.begin(9600);
   lcdI2C.init();
   lcdI2C.setBacklight(true);
 
@@ -126,6 +133,11 @@ void loop() {
       // }
   }
 
+  if(millis() - currentTime > Interval) {
+    Tempalature = analogRead(TemPin) * 0.48828125;
+    currentTime = millis();
+  }
+    
   DisplayLCDTemperature();
   DisplayLedTemperature();
 }
@@ -133,7 +145,7 @@ void loop() {
 void DisplayLCDTemperature() {
   switch (stateProgram) {
     case DisplayAll:
-      DisplayLCD("H : " + String(temHIGH) + " : " + "C : " + String(temLOW), "Tem : " + String(analogRead(TemPin) * 0.48828125));
+      DisplayLCD("H : " + String(temHIGH) + " : " + "C : " + String(temLOW), "Tem : " + String(Tempalature));
       break;
     case DisplayTemHigh:
       DisplayLCD("HOT : " + String(temHIGH), "");
@@ -150,8 +162,6 @@ void DisplayLedTemperature() {
     delay(100);
     ProgramStart = false;
   }
-  Serial.println("Tem");
-  Serial.println(temperature);
 
   if (temperature >= temHIGH) SelectLED(LED_RED);
   else if (temperature > temLOW && temperature < temHIGH) SelectLED(LED_GREEN);
