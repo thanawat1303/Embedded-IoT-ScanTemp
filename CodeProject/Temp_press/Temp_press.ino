@@ -1,17 +1,17 @@
 #include <Wire.h>
-// #include <LiquidCrystal.h>
 
 // LCD normal
+// #include <LiquidCrystal.h>
 // const int rs = 8 , enable = 9 , d1 = 1 , d2 = 2 , d3 = 3 , d4 = 4;
 // LiquidCrystal lcd(rs , enable , d1 , d2 , d3 , d4);
 
 // LCD I2C on Proteus
-// #include <DFRobot_RGBLCD1602.h>
-// DFRobot_RGBLCD1602 lcdI2C(16, 2);
+#include <DFRobot_RGBLCD1602.h>
+DFRobot_RGBLCD1602 lcdI2C(16, 2);
 
 // LCD I2C on Board
-#include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcdI2C(0x27, 16, 2);
+// #include <LiquidCrystal_I2C.h>
+// LiquidCrystal_I2C lcdI2C(0x27, 16, 2);
 
 // DS18B20
 #include <OneWire.h>
@@ -45,11 +45,11 @@ int temHIGH;
 int temLOW;
 int stateProgram;
 
-unsigned long currentTimeTempGet = millis();
+unsigned long currentTimeTempGet;
 const int IntervalPress = 2000;
 int IntervalTempGet = 0;
 
-unsigned long currentTimeReset = millis();
+unsigned long currentTimeReset;
 const int IntervalReset = 10000;
 
 String HexPress;
@@ -59,9 +59,8 @@ unsigned long TimePress;
 void setup() {
   Serial.begin(9600);
   DSTEMP.begin();
-
-  // lcdI2C.begin(16, 2);
   lcdI2C.init();
+
   lcdI2C.setBacklight(true);
 
   pinMode(ButtonUP, INPUT);
@@ -77,64 +76,76 @@ void setup() {
 
   HexPress = "";
   TemperatureGet = 0;
+
+  currentTimeTempGet = millis();
+  currentTimeReset = millis();
 }
 
 void loop() {
-  // ห้ามต่อ output ยาว ค่าจะเพี้ยน LM35
-  if (digitalRead(ButtonUP) || digitalRead(ButtonDOWN)) {
-    unsigned long milliTime = millis();
-    TimePress = milliTime - TimeStart;
-    HexPress = String(digitalRead(ButtonUP)) + String(digitalRead(ButtonDOWN));
 
-    if (TimePress > IntervalPress) {
-      switch (HexPress.toInt()) {
-        case PressPUSH:
-          stateProgram = stateProgram + count_nextState;
-          if (stateProgram > DisplayTemLow) stateProgram = DisplayAll;
-          break;
-        case PressSUBT:
-          stateProgram = stateProgram - count_prevState;
-          if (stateProgram < DisplayAll) stateProgram = DisplayTemLow;
-          break;
+  switch(digitalRead(ButtonUP) || digitalRead(ButtonDOWN)) {
+    case true :
+      TimePress = millis() - TimeStart;
+      HexPress = String(digitalRead(ButtonUP)) + String(digitalRead(ButtonDOWN));
+      lcdI2C.setBacklight(true);
+
+      if (TimePress > IntervalPress) {
+        switch (HexPress.toInt()) {
+          case PressPUSH:
+            stateProgram = stateProgram + count_nextState;
+            if (stateProgram > DisplayTemLow) stateProgram = DisplayAll;
+            break;
+          case PressSUBT:
+            stateProgram = stateProgram - count_prevState;
+            if (stateProgram < DisplayAll) stateProgram = DisplayTemLow;
+            break;
+        }
+
+        lcdI2C.clear();
+        DisplayLCDTemperature();
+        while (digitalRead(ButtonUP) || digitalRead(ButtonDOWN));
       }
 
-      lcdI2C.clear();
-      DisplayLCDTemperature();
-      while (digitalRead(ButtonUP) || digitalRead(ButtonDOWN));
-    }
-
-    // รีเซ็ตเวลาโหมดการตั้งค่าขอบเขต
-    currentTimeReset = milliTime;
-  } else {
-    if (stateProgram && TimePress <= IntervalPress) {
+      // รีเซ็ตเวลาโหมดการตั้งค่าขอบเขต
+      currentTimeReset = millis();
+      break;
+    default :
+      if (stateProgram && TimePress <= IntervalPress) {
       // ปรับขอบเขตอุณหภูมิ
-      switch (HexPress.toInt()) {
-        case PressPUSH:
-          switch (stateProgram) {
-            case DisplayTemHigh:
-              temHIGH = temHIGH + 1;
-              break;
-            case DisplayTemLow:
-              if (temLOW + 1 < temHIGH) temLOW = temLOW + 1;
-              break;
-          }
-          break;
-        case PressSUBT:
-          switch (stateProgram) {
-            case DisplayTemHigh:
-              if (temHIGH - 1 > temLOW) temHIGH = temHIGH - 1;
-              break;
-            case DisplayTemLow:
-              temLOW = temLOW - 1;
-              break;
-          }
-          break;
+        switch (HexPress.toInt()) {
+          case PressPUSH:
+            switch (stateProgram) {
+              case DisplayTemHigh:
+                temHIGH = temHIGH + 1;
+                break;
+              case DisplayTemLow:
+                if (temLOW + 1 < temHIGH) temLOW = temLOW + 1;
+                break;
+            }
+            break;
+          case PressSUBT:
+            switch (stateProgram) {
+              case DisplayTemHigh:
+                if (temHIGH - 1 > temLOW) temHIGH = temHIGH - 1;
+                break;
+              case DisplayTemLow:
+                temLOW = temLOW - 1;
+                break;
+            }
+            break;
+        }
       }
-    }
-    TimeStart = millis();
-    TimePress = 0;
-    HexPress = "";
+      TimeStart = millis();
+      TimePress = 0;
+      HexPress = "";
+      break;
   }
+
+  // if (digitalRead(ButtonUP) || digitalRead(ButtonDOWN)) {
+    
+  // } else {
+    
+  // }
 
   if (HexPress == "") {
     unsigned long milliTime = millis();
@@ -144,9 +155,12 @@ void loop() {
       if (!IntervalTempGet) IntervalTempGet = 1000;
     } 
     
+    // reset mode monitor
     if(milliTime - currentTimeReset > IntervalReset && stateProgram) {
       stateProgram = DisplayAll;
       currentTimeReset = milliTime;
+    } else if (milliTime - currentTimeReset > IntervalReset) {
+      lcdI2C.setBacklight(ffsll);
     }
   }
 
