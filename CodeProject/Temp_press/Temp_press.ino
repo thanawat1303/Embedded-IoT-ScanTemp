@@ -6,12 +6,12 @@
 // LiquidCrystal lcd(rs , enable , d1 , d2 , d3 , d4);
 
 // LCD I2C on Proteus
-#include <DFRobot_RGBLCD1602.h>
-DFRobot_RGBLCD1602 lcdI2C(16, 2);
+// #include <DFRobot_RGBLCD1602.h>
+// DFRobot_RGBLCD1602 lcdI2C(16, 2);
 
 // LCD I2C on Board
-// #include <LiquidCrystal_I2C.h>
-// LiquidCrystal_I2C lcdI2C(0x27, 16, 2);
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcdI2C(0x27, 16, 2);
 
 // DS18B20
 #include <OneWire.h>
@@ -122,6 +122,7 @@ void loop() {
                 if (temLOW + 1 < temHIGH) temLOW = temLOW + 1;
                 break;
             }
+            lcdI2C.clear();
             break;
           case PressSUBT:
             switch (stateProgram) {
@@ -132,6 +133,7 @@ void loop() {
                 temLOW = temLOW - 1;
                 break;
             }
+            lcdI2C.clear();
             break;
         }
       }
